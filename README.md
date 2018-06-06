@@ -173,7 +173,7 @@ Route::get('/search/{search}/{offset}/{limit}', 'UserController@search');
 $ColumnsToSearch = ['name','email'];
 $OrderBy = ['id','desc'];
 User::Search($request,$ColumnsToSearch,$OrderBy); // Search table user. Search requests can be POST or GET
-												  // Searh must have this keys {"search":"","offset" : "","limit" : ""}
+			// Searh must have this keys {"search":"","offset" : "","limit" : ""}
 
 User::CheckAccessToken(); // check if User has access_token. If not exit program with error message
 ```
