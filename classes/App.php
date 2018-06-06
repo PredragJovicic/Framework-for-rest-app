@@ -1,0 +1,23 @@
+<?php
+
+abstract class App
+{
+	protected static $url;
+	protected static $apikey;
+	protected static $database;
+	protected static $host;
+	protected static $username;
+	protected static $password;
+	protected static $connection;
+	
+    protected static function Connect()
+    {
+		self::$connection = new mysqli( self::$host, self::$username, self::$password, self::$database);
+        if (self::$connection->connect_error) {
+            die("Greska pri konekciji: " . self::$connection->connect_error);
+        }
+        mysqli_query(self::$connection, "SET NAMES utf8");
+        mysqli_query(self::$connection, "SET CHARACTER SET utf8");
+        mysqli_query(self::$connection, "SET COLLATION_CONNECTION='utf8_general_ci'");
+    }
+}
