@@ -157,21 +157,23 @@ Route::get('/users/{access_token}', 'UserController@show');
 User::Select($request); // get specific user from table user
 
 Route::post('/users', 'UserController@store');
-User::Insert($request); // Insert user in database in table user encrypt password automacly if 
-						   key is json string is named 'password' and upload file in files folder. 
-						   Name of files must start with 'file_'.
+User::Insert($request); // Insert user in table user, encrypt password automacly if key in json
+						// string is named 'password'. Upload file in files folder automacly if 
+						// name of key start with 'file_'.
 
 Route::put('/users/{id}', 'UserController@update');	   
-User::Update($request);	// update specific user from table user
+User::Update($request);	// update specific user in table user
 
 Route::delete('/users/{id}', 'UserController@delete');
-User::Delete($request); // delete specific user from table user
+User::Delete($request); // delete specific user in table user
 
 Route::post('/search', 'UserController@search');
+{"search":"Some to search","offset" : 0,"limit" : 30}
 Route::get('/search/{search}/{offset}/{limit}', 'UserController@search');
 $ColumnsToSearch = ['name','email'];
 $OrderBy = ['id','desc'];
 User::Search($request,$ColumnsToSearch,$OrderBy); // Search table user. Search requests can be POST or GET
+												  // Searh must have this keys {"search":"","offset" : "","limit" : ""}
 
 User::CheckAccessToken(); // check if User has access_token. If not exit program with error message
 ```
