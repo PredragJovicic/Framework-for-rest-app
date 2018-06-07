@@ -18,7 +18,9 @@ example
 
 ### Writing Routes
 Open routes.php
+
 GET,POST,PUT,DELETE are supported server methods
+
 Route::[server method]([route], [controller]@[controller method]);
 ```
 example
@@ -46,13 +48,14 @@ All responses are in json type
 {"response":"Some data"}
 ```
 All requests must be json type
+
 Getting data from request
 
-If method have body. Key name is body
+If method have body. Key name is 'body'
 ```
 array $data = $request['body'];
 ```
-If method have no body.Key name must be same as it is  define in route
+If method have no body. Key name must be same as it is define in route
 ```
 $data = $request['valiable define in route'];
 ```
@@ -61,9 +64,9 @@ Example PUT method
 Route::put('/users/{id}', 'UserController@update');
 {"name":"My Name","email":"you@you.com"} - data sent in body of request
 
-echo $request['id'];  //retult id value
-echo $request['body']['name'];  //retult My Name
-echo $request['body']['email'];  //retult you@you.com
+echo $request['id'];  //result id value
+echo $request['body']['name'];  //result My Name
+echo $request['body']['email'];  //result you@you.com
 ```
 
 ### Create controller
@@ -119,7 +122,8 @@ class MyHelper
 ```
 
 ### Calling methods
-Just call method normaly, everything is incuded from folders controllers, models, helpers
+Just call method normaly, everything is included from folders controllers, models, helpers
+
 [controler]::[controler method]
 ```
 example
@@ -131,6 +135,7 @@ MyHelper::FirstHelp();
 ```
 ### Smart coding method
 Smart coding method allow you to do your work much faster.
+
 You can insert, update, delete and search data from database very easy.
 
 Smart coding method for controllers
@@ -141,10 +146,12 @@ Route::post('/login', 'UserController@Login');
 Route::get('/logout/{access_token}', 'UserController@Logout');
 Route::post('/register', 'UserController@Register');
 ```
-login needs with email and password, and generate access_token
+login checks email and password, and generate access_token
+
 logout needs access_token to logout user
-Register encrypt password automacly if key is json string is named 'password' and upload file in files folder. 
-Name of files must start with 'file_'. 
+
+Register encrypt password automacly if key in json string is named 'password' and upload file in
+files folder automacly if name of key start with 'file_'.
 
 Smart coding method for models
 ```
@@ -157,9 +164,9 @@ Route::get('/users/{access_token}', 'UserController@show');
 User::Select($request); // get specific user from table user
 
 Route::post('/users', 'UserController@store');
-User::Insert($request); // Insert user in table user, encrypt password automacly if key in json
-						// string is named 'password'. Upload file in files folder automacly if 
-						// name of key start with 'file_'.
+User::Insert($request); // Insert user in table user; Encrypt password automacly if key in json
+				// string is named 'password'. Upload file in files folder automacly if 
+				// name of key start with 'file_'.
 
 Route::put('/users/{id}', 'UserController@update');	   
 User::Update($request);	// update specific user in table user
