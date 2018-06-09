@@ -20,13 +20,15 @@ class Router extends App
 	{
 		
 		    if($_SERVER['HTTP_APIKEY'] != self::$apikey)
-		    {
-			    exit(json_encode( [ "response" => "Api key error"]));		
+		    {		
+				$result="Api key error";
+				self::Response($result,200);
 		    }
 		
 		    if($_SERVER['CONTENT_TYPE'] != "application/json")
 		    {
-			    exit(json_encode( [ "response" => "Not application/json"]));
+				$result="Not application/json";
+				self::Response($result,200);
 		    }
 	
 	}
@@ -75,8 +77,8 @@ class Router extends App
 			Controller::setController($route,$request);
 		}else{
 		    
-		    http_response_code (404);
-			exit(0);
+			$result="Route not find!";
+			self::Response($result,404);
 		}	
 	}
 

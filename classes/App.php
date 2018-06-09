@@ -20,4 +20,11 @@ abstract class App
         mysqli_query(self::$connection, "SET CHARACTER SET utf8");
         mysqli_query(self::$connection, "SET COLLATION_CONNECTION='utf8_general_ci'");
     }
+	
+    protected static function Response($result,$http_response_code)
+    {
+		http_response_code ($http_response_code);
+		header('Content-Type: application/json');
+		exit( json_encode(["response" => $result]) ); 
+    }
 }

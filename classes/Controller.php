@@ -13,8 +13,7 @@ class Controller extends App
 		$controller = $route['controller'].'( $request )';
 		$result = eval("return $controller;");
 		
-		http_response_code (200);
-		exit( json_encode(["response" => $result]) ); 
+		self::Response($result,200);
     }
 	protected static function Login(array $request)
     {		

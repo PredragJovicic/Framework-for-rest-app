@@ -187,6 +187,7 @@ class Model extends Controller
 			$access_token = self::$request['body']['access_token'];
 		}
 
+		$message="Access token error";
 		if($access_token)
 		{
 			$sql="SELECT * from ".strtolower(self::getTable())." WHERE access_token='$access_token'";
@@ -195,10 +196,10 @@ class Model extends Controller
 			$count_row = $result->num_rows;
 
 			if ($count_row == 0 || $user_data['access_token'] != self::$request['access_token']) {
-				exit(json_encode( [ "response" => "Access token error"]));	
+				self::Response($message,200);
 			}
 		}else{
-			exit(json_encode( [ "response" => "Access token error"]));		
+				self::Response($message,200);
 		}
     }
 	
