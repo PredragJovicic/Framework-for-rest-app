@@ -6,31 +6,33 @@ class Router extends App
 	private static $method;
 
 	public function __construct(array $config)
-	{	
+	{
 		self::$url = $config['url'];
 		self::$apikey = $config['apikey'];
 		self::$database = $config['database'];
 		self::$host = $config['host'];
 		self::$username = $config['username'];
 		self::$password = $config['password'];
+		self::$logs_dir = $config['logs_dir'];
+		self::$logs_email = $config['logs_email'];
 		self::$routes = Route::getRoutes();
 	}
 
 	public static function CheckInput()
 	{
-		
+
 		    if($_SERVER['HTTP_APIKEY'] != self::$apikey)
-		    {		
+		    {
 				$result="Api key error";
 				self::Response($result,200);
 		    }
-		
+
 		    if($_SERVER['CONTENT_TYPE'] != "application/json")
 		    {
 				$result="Not application/json";
 				self::Response($result,200);
 		    }
-	
+
 	}
 	public static function Run()
 	{
@@ -42,27 +44,27 @@ class Router extends App
 
 		$route = array();
 		$buffer = '';
-	
+
 		foreach($webroute as $webroutename)
 		{
 			$buffer .= $webroutename;
-		
+
 			foreach(self::$routes as $routename)
 			{
 				if(trim($buffer,"/") == $routename['route'] && self::$method == $routename['method']  && $count == $routename['count'])
 				{
-					$route = $routename;	
+					$route = $routename;
 				}
 			}
-			$buffer .= "/";			
+			$buffer .= "/";
 		}
-		
+
 		if(!empty($route)){
-			
+
 			$request = array();
 			$data = file_get_contents('php://input');
 			$jsondata = json_decode($data,true);
-			
+
 			if(!empty($jsondata)){
 				$request['body'] = $jsondata;
 			}
@@ -71,15 +73,15 @@ class Router extends App
 				$parametarskey = $route['parametars'];
 				$c=array_combine($parametarskey,$parametarsvalue);
 				$request = array_merge($request, $c);
-				
+
 			}
-			
+
 			Controller::setController($route,$request);
 		}else{
-		    
+
 			$result="Route not find!";
 			self::Response($result,404);
-		}	
+		}
 	}
 
 }

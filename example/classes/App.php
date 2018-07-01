@@ -8,8 +8,10 @@ abstract class App
 	protected static $host;
 	protected static $username;
 	protected static $password;
+	protected static $logs_dir;
+	protected static $logs_email;
 	protected static $connection;
-	
+
     protected static function Connect()
     {
 		self::$connection = new mysqli( self::$host, self::$username, self::$password, self::$database);
@@ -19,5 +21,12 @@ abstract class App
         mysqli_query(self::$connection, "SET NAMES utf8");
         mysqli_query(self::$connection, "SET CHARACTER SET utf8");
         mysqli_query(self::$connection, "SET COLLATION_CONNECTION='utf8_general_ci'");
+    }
+
+    protected static function Response($result,$http_response_code)
+    {
+		http_response_code ($http_response_code);
+		header('Content-Type: application/json');
+		exit( json_encode(["response" => $result]) );
     }
 }
