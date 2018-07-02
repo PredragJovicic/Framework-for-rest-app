@@ -1,0 +1,3 @@
+2018.07.02 10:02:23 INFO priority MEDIUM : info message - Uspeh sa testchannel.php STATUS CODE 0 - SEND TO CHANNEL
+2018.07.02 10:02:24 ERROR priority HIGH : Error message - EMAIL SEND TO ADMINISTRATOR
+2018.07.02 10:02:24 DEBUG priority NORMAL : Debug message

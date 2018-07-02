@@ -10,7 +10,8 @@ $config = [
 	'username' => '',
 	'password' => '',
 
-	'logs_dir' => '',
-	'logs_email' => '',
+	'log_file'=> '',
+	'log_email' => '',
+	'log_channel' => '',
 
 ];

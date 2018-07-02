@@ -5,7 +5,9 @@ class UserController extends Controller
 
 	public static function base()
 	{
-		Log::info('info message', "HIGH");
+		Log::info('info message', "MEDIUM");
+		Log::error('Error message','high');
+		Log::debug('Debug message');
 		return "Base";
 	}
 	public static function index()

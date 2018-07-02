@@ -13,8 +13,10 @@ class Router extends App
 		self::$host = $config['host'];
 		self::$username = $config['username'];
 		self::$password = $config['password'];
-		self::$logs_dir = $config['logs_dir'];
+		//self::$logs_dir = $config['logs_dir'];
 		self::$logs_email = $config['logs_email'];
+		self::$log_channel = $config['log_channel'];
+		self::$log_file = date("Y.m.d")."_".$config['log_file'];
 		self::$routes = Route::getRoutes();
 	}
 
