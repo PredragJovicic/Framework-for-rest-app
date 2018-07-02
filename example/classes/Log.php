@@ -5,7 +5,7 @@ class Log extends App
   private static $message,$priority,$logmethod;
 
 
-  public static function info(string $message,string $priority = "NORMAL")
+  public static function info(string $message,string $priority = "LOW")
   {
     self::$logmethod = "INFO";
     self::$message = $message;
@@ -13,7 +13,7 @@ class Log extends App
 
     self::logging();
   }
-  public static function debug(string $message,string $priority = "NORMAL")
+  public static function debug(string $message,string $priority = "LOW")
   {
     self::$logmethod = "DEBUG";
     self::$message = $message;
